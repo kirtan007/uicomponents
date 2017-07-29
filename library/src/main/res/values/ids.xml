@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="a_activity_coordinator_layout" type="id"/>
+    <item name="a_activity_appbar" type="id"/>
+    <item name="a_activity_appbar_content" type="id"/>
+    <item name="a_activity_collapsing_toolbar" type="id"/>
+    <item name="a_activity_toolbar" type="id"/>
+    <item name="a_activity_content" type="id"/>
+    <item name="a_activity_progress" type="id"/>
+
+
+    <item name="f_progress" type="id"/>
+    <item name="f_content" type="id"/>
+</resources>

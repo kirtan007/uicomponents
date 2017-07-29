@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/v_retry_ll_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:visibility="visible">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/v_retry_iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:src="@drawable/ic_warning_black_48dp"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/v_retry_tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_medium"
+        tools:text="Internet not available"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/v_retry_btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/f_intellicode_btn_retry"/>
+</LinearLayout>

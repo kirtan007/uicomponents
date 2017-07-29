@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib-gson-annotations/lib-gson-annotations.iml" filepath="$PROJECT_DIR$/lib-gson-annotations/lib-gson-annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib-gson-processor/lib-gson-processor.iml" filepath="$PROJECT_DIR$/lib-gson-processor/lib-gson-processor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib-slidemenu/lib-slidemenu.iml" filepath="$PROJECT_DIR$/lib-slidemenu/lib-slidemenu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uicomponents.iml" filepath="$PROJECT_DIR$/uicomponents.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib-uicomponents/uicomponents-lib-uicomponents.iml" filepath="$PROJECT_DIR$/lib-uicomponents/uicomponents-lib-uicomponents.iml" />
+    </modules>
+  </component>
+</project>

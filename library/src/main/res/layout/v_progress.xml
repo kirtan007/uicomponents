@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <FrameLayout
+        android:id="@+id/v_progress_fl_data_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray4"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
+        <ProgressBar
+            android:id="@+id/v_progress_pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="?attr/colorPrimary"
+            android:indeterminateTintMode="src_in"
+        />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/v_progress_fl_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="?attr/colorPrimary"
+            android:indeterminateTintMode="src_in"/>
+    </FrameLayout>
+    <com.tinymatrix.uicomponents.views.RetryView
+        android:id="@+id/v_progress_v_retry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    />
+</merge>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LibIntelliCode</string>
+
+    <!-- Sweet Alert -->
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="LOADING">Loading...</string>
+    <string name="f_intellicode_btn_retry">Retry</string>
+    <string name="something_went_wrong">"Something went wrong!\nPlease Try Again"</string>
+    <string name="internet_not_available">Internet not available</string>
+    <string name="maintainence_message">Under maintenance</string>
+</resources>

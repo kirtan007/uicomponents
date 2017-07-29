@@ -1,0 +1,382 @@
+package com.tinymatrix.uicomponents.fragments;
+
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import com.tinymatrix.uicomponents.R;
+import com.tinymatrix.uicomponents.activities.Activity;
+
+import com.tinymatrix.uicomponents.annotations.SmartFragment;
+import com.tinymatrix.uicomponents.annotations.SmartOptionMenu;
+import com.tinymatrix.uicomponents.models.RetryAlertType;
+import com.tinymatrix.uicomponents.models.ToolbarStyle;
+import com.tinymatrix.uicomponents.views.ContentLoadErrorView;
+
+/**
+ * Created by kirtan on 7/12/14.
+ */
+public abstract class ToolbarFragment extends Fragment
+{
+    private SmartOptionMenu smartOptionMenu;
+    private SmartFragment smartFragment;
+    private IMenuItemClickListener menuItemClickListener;
+    boolean isToolbarEnabled = true;
+
+    public ToolbarFragment()
+    {
+        super();
+        processAnnotation();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
+        if (smartOptionMenu != null)
+        {
+            setHasOptionsMenu(true);
+        }
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        if (smartFragment.toolbarStyle() == ToolbarStyle.COLLAPSIBLE)
+        {
+            configureCollapsibleToolbar();
+        }
+        else
+        {
+            configureNonCollapsibleToolbar();
+        }
+        setupToolbar(getToolbar());
+    }
+
+    private void configureCollapsibleToolbar()
+    {
+        Activity progressContainerViewGroup = ((Activity) getActivity());
+        CoordinatorLayout coordinatorLayout = progressContainerViewGroup.getCoordinatorLayout();
+        coordinatorLayout.setFitsSystemWindows(false);
+
+        /* Remove AppBar Layout */
+        for (int childIndex = 0; childIndex < coordinatorLayout.getChildCount(); childIndex++)
+        {
+            View view = coordinatorLayout.getChildAt(childIndex);
+            if (view instanceof AppBarLayout)
+            {
+                coordinatorLayout.removeViewAt(childIndex);
+            }
+        }
+
+        /* Inflate Layout */
+        LayoutInflater layoutInflater = (LayoutInflater) selfContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View collapsibleLayout = layoutInflater.inflate(R.layout.v_collipsible_layout, coordinatorLayout, true);
+
+        Toolbar toolbarObj = (Toolbar) collapsibleLayout.findViewById(R.id.toolbar);
+        ViewGroup flContent = (ViewGroup) collapsibleLayout.findViewById(R.id.v_collapsible_layout_fl_content);
+        AppBarLayout newAppBarLayout = (AppBarLayout) collapsibleLayout.findViewById(R.id.appbar);
+
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) collapsibleLayout.findViewById(R.id.collapsing_toolbar);
+        configureCollapsibleToolbar(newAppBarLayout, collapsingToolbarLayout);
+        progressContainerViewGroup.setToolbar(toolbarObj);
+        progressContainerViewGroup.setToolbarContentViewGroup(flContent);
+        progressContainerViewGroup.setAppBarLayout(newAppBarLayout);
+    }
+
+    private void configureNonCollapsibleToolbar()
+    {
+        Activity progressContainerViewGroup = ((Activity) getActivity());
+        CoordinatorLayout coordinatorLayout = progressContainerViewGroup.getCoordinatorLayout();
+        coordinatorLayout.setFitsSystemWindows(false);
+
+        /* Remove AppBar Layout */
+        for (int childIndex = 0; childIndex < coordinatorLayout.getChildCount(); childIndex++)
+        {
+            View view = coordinatorLayout.getChildAt(childIndex);
+            if (view instanceof AppBarLayout)
+            {
+                coordinatorLayout.removeViewAt(childIndex);
+            }
+        }
+
+        /* Inflate Layout */
+        LayoutInflater layoutInflater = (LayoutInflater) selfContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View collapsibleLayout = layoutInflater.inflate(R.layout.v_non_collapsible_layout, coordinatorLayout, true);
+
+        Toolbar toolbarObj = (Toolbar) collapsibleLayout.findViewById(R.id.toolbar);
+        RelativeLayout flContent = (RelativeLayout) collapsibleLayout.findViewById(R.id.v_non_collapsible_layout_fl_content);
+        AppBarLayout newAppBarLayout = (AppBarLayout) collapsibleLayout.findViewById(R.id.appbar);
+        progressContainerViewGroup.setToolbar(toolbarObj);
+        progressContainerViewGroup.setToolbarContentViewGroup(flContent);
+        progressContainerViewGroup.setAppBarLayout(newAppBarLayout);
+    }
+
+    public void configureCollapsibleToolbar(AppBarLayout appBarLayout, CollapsingToolbarLayout collapsingToolbarLayout)
+    {
+
+    }
+
+    private void processAnnotation()
+    {
+        Class<?> classz = this.getClass();
+        if (classz.isAnnotationPresent(SmartOptionMenu.class))
+        {
+            smartOptionMenu = classz.getAnnotation(SmartOptionMenu.class);
+        }
+        if (classz.isAnnotationPresent(SmartFragment.class))
+        {
+            smartFragment = classz.getAnnotation(SmartFragment.class);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        if (smartOptionMenu != null)
+        {
+            inflater.inflate(smartOptionMenu.menuResId(), menu);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    /* Interface to Make Menu Item Selection Click Handle Easy */
+    public interface IMenuItemClickListener
+    {
+        void onMenuItemSelected(MenuItem menuItem, View anchorView);
+    }
+
+    public void setMenuItemClickListener(IMenuItemClickListener menuItemClickListener)
+    {
+        this.menuItemClickListener = menuItemClickListener;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        /* Allow Toolbar Actions Only When Drawer is Unlocked */
+        if (isDrawerActivity() && !isDrawerLocked())
+        {
+            if (menuItemClickListener != null)
+            {
+                View anchorView = getActivity().findViewById(item.getItemId());
+                menuItemClickListener.onMenuItemSelected(item, anchorView);
+            }
+        }
+        else
+        {
+            if (menuItemClickListener != null)
+            {
+                View anchorView = getActivity().findViewById(item.getItemId());
+                menuItemClickListener.onMenuItemSelected(item, anchorView);
+            }
+        }
+        hideKeyboard();
+        return super.onOptionsItemSelected(item);
+    }
+
+    public Toolbar getToolbar()
+    {
+        return progressContainerViewGroup.getToolBar();
+    }
+
+    public AppBarLayout getAppBar()
+    {
+        return progressContainerViewGroup.getAppBar();
+    }
+
+    public void setToolbarTitle(@StringRes int title)
+    {
+        getToolbar().setTitle(getContext().getString(title));
+    }
+
+    public void setToolbarTitle(String title)
+    {
+        getToolbar().setTitle(title);
+    }
+
+    public abstract void setupToolbar(Toolbar toolbar);
+
+    private void resetToolbar()
+    {
+        progressContainerViewGroup.resetToolbar();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu)
+    {
+        super.onPrepareOptionsMenu(menu);
+        for (int menuItemIndex = 0; menuItemIndex < menu.size(); menuItemIndex++)
+        {
+            menu.getItem(menuItemIndex).setEnabled(isToolbarEnabled);
+        }
+    }
+
+
+
+    @Override
+    public void showRetry(final ContentLoadErrorView.IRetryListener retryDialogListener, RetryAlertType retryAlertType)
+    {
+        disableToolbarButtons();
+        super.showRetry(new ContentLoadErrorView.IRetryListener()
+        {
+            @Override
+            public void retry()
+            {
+                retryDialogListener.retry();
+            }
+        }, retryAlertType);
+    }
+
+
+    @Override
+    public void showFailedMessage(String message, ContentLoadErrorView.IDelayListener delayListener)
+    {
+        enableToolbarButtons();
+        super.showFailedMessage(message, delayListener);
+    }
+
+    @Override
+    public void showCompletedMessage(String message, ContentLoadErrorView.IDelayListener delayListener)
+    {
+        enableToolbarButtons();
+        super.showCompletedMessage(message, delayListener);
+    }
+
+    //////////////////////////////////////Toolbar Control //////////////////////////////////////////
+    public void enableToolbarButtons()
+    {
+        isToolbarEnabled = true;
+        progressContainerViewGroup.invalidateOptionsMenu();
+        progressContainerViewGroup.enableToolbarViews();
+    }
+
+    public void disableToolbarButtons()
+    {
+        isToolbarEnabled = false;
+        progressContainerViewGroup.invalidateOptionsMenu();
+        progressContainerViewGroup.disableToolbarViews();
+    }
+
+    public void addViewToToolbar(View view)
+    {
+        progressContainerViewGroup.addViewToToolbar(view);
+    }
+
+    public void clearToolbarViews()
+    {
+        progressContainerViewGroup.clearToolbarViews();
+    }
+
+    public ViewGroup getToolbarContentHolder()
+    {
+        return progressContainerViewGroup.getToolbarContentHolder();
+    }
+
+    /////////////////////////////////////// Progress Control //////////////////////////////////////////
+    @Override
+    public void showDataLoading()
+    {
+        disableToolbarButtons();
+        super.showDataLoading();
+    }
+
+    @Override
+    public void hideDataLoading()
+    {
+        enableToolbarButtons();
+        super.hideDataLoading();
+    }
+
+    @Override
+    public void showProgress()
+    {
+        disableToolbarButtons();
+        super.showProgress();
+    }
+
+    @Override
+    public void hideProgress()
+    {
+        enableToolbarButtons();
+        super.hideProgress();
+    }
+
+    /////////////////////////////////////Activity Drawer Control /////////////////////////////////////
+    private boolean isDrawerActivity()
+    {
+        return progressContainerViewGroup instanceof DrawerActivity;
+    }
+
+    private DrawerActivity getDrawerActivity()
+    {
+        return (DrawerActivity) progressContainerViewGroup;
+    }
+
+    public void openDrawer()
+    {
+        if (isDrawerActivity())
+        {
+            getDrawerActivity().openDrawer();
+        }
+    }
+
+   /* public void setDrawerView(View view)
+    {
+        if(isDrawerActivity())
+        {
+            getDrawerActivity().setDrawerView(view);
+        }
+    }
+
+    public void setDrawerView(@LayoutRes int layoutId)
+    {
+        if(isDrawerActivity())
+        {
+            getDrawerActivity().setDrawerView(layoutId);
+        }
+    }*/
+
+    public void closeDrawer()
+    {
+        if(isDrawerActivity())
+        {
+            getDrawerActivity().closeDrawer();
+        }
+    }
+
+    public void lockDrawer()
+    {
+        if(isDrawerActivity())
+        {
+            getDrawerActivity().lockDrawer();
+        }
+    }
+
+    public void unlockDrawer()
+    {
+        if(isDrawerLocked())
+        {
+            getDrawerActivity().unlockDrawer();
+        }
+    }
+
+    public boolean isDrawerLocked()
+    {
+        return getDrawerActivity().isDrawerLocked;
+    }
+}

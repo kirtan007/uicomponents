@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/f_intellicode_dialog_rl_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ViewStub
+        android:id="@+id/f_intellicode_dialog_vs_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+   <com.tinymatrix.uicomponents.views.ProgressView
+        android:id="@+id/f_intellicode_dialog_status_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
