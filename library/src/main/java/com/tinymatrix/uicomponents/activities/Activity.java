@@ -174,7 +174,7 @@ public abstract class Activity extends AppCompatActivity
                     }
                     else
                     {
-                        transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                        //  transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
                     }
                 }
 
@@ -198,13 +198,13 @@ public abstract class Activity extends AppCompatActivity
                             .addToBackStack(tag);
                 }
 
-                if (showConfigBuilder.allowStateLossCommit)
+                if (!showConfigBuilder.allowStateLossCommit)
                 {
-                    transaction.commitAllowingStateLoss();
+                    transaction.commit();
                 }
                 else
                 {
-                    transaction.commit();
+                    transaction.commitAllowingStateLoss();
                 }
             }
         }
@@ -317,7 +317,7 @@ public abstract class Activity extends AppCompatActivity
         protected boolean reverseAnimate = false;
         protected Map<String, View> sharedElements = new HashMap<>();
         protected boolean allowStateLossCommit = false;
-        protected TransactionType transactionType;
+        protected TransactionType transactionType=TransactionType.FRAGMENT_REPLACE;
         protected int requestCode = -1;
 
         public ShowConfigBuilder fragment(Fragment fragment)

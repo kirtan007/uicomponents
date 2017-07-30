@@ -22,53 +22,6 @@ public class SnackBarController
     /* Snackbar API */
     private Snackbar snackbar;
 
-    /* Success Snackbar */
-    /*public void showSuccessSnackBar(CharSequence message)
-    {
-        snackbar = getSnackBar(activity.getCoordinatorLayout(), message);
-        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity, R.color.success_green));
-        snackbar.show();
-    }
-
-    *//* Failure Snackbars *//*
-    public void showFailureSnackBar(CharSequence message)
-    {
-        snackbar = getSnackBar(activity.getCoordinatorLayout(), message);
-        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity,R.color.failure_red));
-        snackbar.show();
-    }
-    public void showFailureSnackBar(@StringRes int messageStringResId, @StringRes int actionStringResId, View.OnClickListener onClickListener)
-    {
-        String message = activity.getString(messageStringResId);
-        String actionString =activity.getString(actionStringResId);
-        showFailureSnackBar(message,actionString,onClickListener);
-    }
-
-    public void showFailureSnackBar(CharSequence message,String actionText,View.OnClickListener onClickListener)
-    {
-        snackbar = getSnackBar(activity.getCoordinatorLayout(), message).setAction(actionText,onClickListener);
-        snackbar.getView().setBackgroundColor(ContextCompat.getColor(activity,R.color.failure_red));
-        snackbar.show();
-    }*/
-
-    /* Simple Snackbar */
-   /* public void showSnackbar(int messageStringResId)
-    {
-        showSnackbar(activity.getString(messageStringResId));
-    }*/
-
-    /*public void showSnackbar(CharSequence message)
-    {
-        snackbar = getSnackBar(activity.getCoordinatorLayout(), message);
-        snackbar.show();
-    }
-
-    public void showSnackbar(CharSequence message, String actionName, View.OnClickListener onClickListener)
-    {
-        snackbar = getSnackBar(activity.getCoordinatorLayout(), message).setAction(actionName, onClickListener);
-        snackbar.show();
-    }
-*/
     public Snackbar getSnackBar(View view, CharSequence message)
     {
         Snackbar snackbar= Snackbar.make(view, message, Snackbar.LENGTH_LONG).setCallback(new Snackbar.Callback()
@@ -85,7 +38,7 @@ public class SnackBarController
                 super.onShown(snackbar);
             }
         });
-        snackbar.setActionTextColor(ContextCompat.getColor(activity,R.color.white));
+        snackbar.setActionTextColor(ContextCompat.getColor(activity,android.R.color.white));
         return snackbar;
     }
 

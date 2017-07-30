@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:background="@color/white"
+    android:background="@android:color/white"
     android:orientation="vertical"
     android:visibility="visible"
     tools:visibility="visible">
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        tools:src="@drawable/ic_warning_black_48dp"/>
+        />
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/v_retry_tv_message"
         android:layout_width="wrap_content"

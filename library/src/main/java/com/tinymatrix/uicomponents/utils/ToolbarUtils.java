@@ -64,13 +64,13 @@ public class ToolbarUtils
         appBarLayout.setElevation(elevation);
     }
 
-    public static void setBackButtonWithColor(@ColorRes int color, Toolbar toolbar)
+    /*public static void setBackButtonWithColor(@ColorRes int color, Toolbar toolbar)
     {
         Drawable upArrow = ResourcesCompat.getDrawable(toolbar.getResources(), R.drawable.ic_back_arrow, null);
         upArrow.setColorFilter(ContextCompat.getColor(toolbar.getContext(), color), PorterDuff.Mode.SRC_ATOP);
         toolbar.setNavigationIcon(upArrow);
 
-    }
+    }*/
 
     public static void enableScrollFlags(Toolbar toolbar)
     {

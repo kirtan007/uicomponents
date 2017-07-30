@@ -47,7 +47,6 @@ public class FragmentA extends Fragment
         //CustomProgress customProgress = new CustomProgress(getContext());
         //customProgress.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
        // getProgressController().setProgressView(customProgress);
-
         ViewGroup appBarContent =getTinyMatrixActivity().getAppBarContentLayout();
         View additionalView= getActivity().getLayoutInflater().inflate(R.layout.v_toolbarview,appBarContent,false);
         appBarContent.addView(additionalView,0);
@@ -110,19 +109,23 @@ public class FragmentA extends Fragment
                     public void run()
                     {
                         getProgressController().hideProgress();
-                        getProgressController().showRetry(R.string.internet_not_available, R.drawable.ic_signal_wifi_off_black_48dp, new View.OnClickListener()
+                      /*  getProgressController().showRetry(R.string.internet_not_available, R.drawable.ic_signal_wifi_off_black_48dp, new View.OnClickListener()
                         {
                             @Override
                             public void onClick(View v)
                             {
 
                             }
-                        });
+                        });*/
                     }
                 },3000);
             }
         });
+
+
     }
+
+
 
     @Override
     public void setupToolbar(Toolbar toolbar)

@@ -2,17 +2,27 @@ package com.tinymatrix.uicomponents.views;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.tinymatrix.uicomponents.R;
 import com.tinymatrix.uicomponents.fragments.IProgressView;
+
+import static android.os.Build.VERSION.SDK_INT;
 
 /**
  * Created by systemx on 25/6/17.
@@ -23,6 +33,8 @@ public class ProgressView extends FrameLayout implements IProgressView
     private FrameLayout flDataProgress;
     private FrameLayout flNormalProgress;
     private RetryView vRetry;
+    private ProgressBar pbData;
+    private ProgressBar pbNormalProgress;
 
     public ProgressView(@NonNull Context context)
     {
@@ -51,9 +63,35 @@ public class ProgressView extends FrameLayout implements IProgressView
         layoutInflater.inflate(R.layout.v_progress, this, true);
         flDataProgress = (FrameLayout) findViewById(R.id.v_progress_fl_data_progress);
         flNormalProgress = (FrameLayout) findViewById(R.id.v_progress_fl_progress);
+        pbData = (ProgressBar)findViewById(R.id.v_progress_pb_loading_data);
+        pbNormalProgress= (ProgressBar)findViewById(R.id.v_progress_pb_normal);
+
+        /*pbData.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(getPrimaryColor(getContext())),
+                android.graphics.PorterDuff.Mode.SRC_IN);
+
+        pbNormalProgress.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(getPrimaryColor(getContext())),
+                android.graphics.PorterDuff.Mode.SRC_IN);*/
+
+      /*  ViewCompat.setBackgroundTintList(pbData,ColorStateList.valueOf(getPrimaryColor(getContext())));
+        ViewCompat.setBackgroundTintMode(pbData, PorterDuff.Mode.SRC_IN);
+
+        ViewCompat.setBackgroundTintList(pbNormalProgress,ColorStateList.valueOf(getPrimaryColor(getContext())));
+        ViewCompat.setBackgroundTintMode(pbNormalProgress, PorterDuff.Mode.SRC_IN);*/
+
         vRetry = (RetryView) findViewById(R.id.v_progress_v_retry);
         this.setVisibility(GONE);
     }
+
+   /* private int getPrimaryColor(Context context)
+    {
+        TypedValue typedValue = new TypedValue();
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorPrimary});
+        int color = a.getColor(0, 0);
+        a.recycle();
+        return color;
+    }*/
 
     @Override
     public View getView()

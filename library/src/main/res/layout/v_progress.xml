@@ -6,18 +6,17 @@
         android:id="@+id/v_progress_fl_data_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray4"
+        android:background="@color/grey_400"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
         tools:visibility="gone">
         <ProgressBar
-            android:id="@+id/v_progress_pb_loading"
+            android:id="@+id/v_progress_pb_loading_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateTint="?attr/colorPrimary"
-            android:indeterminateTintMode="src_in"
+
         />
     </FrameLayout>
 
@@ -30,11 +29,11 @@
         android:visibility="gone"
         tools:visibility="gone">
         <ProgressBar
+            android:id="@+id/v_progress_pb_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateTint="?attr/colorPrimary"
-            android:indeterminateTintMode="src_in"/>
+            />
     </FrameLayout>
     <com.tinymatrix.uicomponents.views.RetryView
         android:id="@+id/v_progress_v_retry"

@@ -131,7 +131,7 @@ public class ActivityTest extends Activity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.drawer, menu);
+        //inflater.inflate(R.menu.drawer, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -139,7 +139,8 @@ public class ActivityTest extends Activity
     public void setupToolbar(Toolbar toolbarObj, ViewGroup contentView)
     {
         toolbarObj.setTitle("Hello World");
-        toolbarObj.setNavigationIcon(R.drawable.ic_back_arrow);
+
+        //toolbarObj.setNavigationIcon(R.drawable.ic_back_arrow);
         toolbarObj.setNavigationOnClickListener(new View.OnClickListener()
         {
             @Override

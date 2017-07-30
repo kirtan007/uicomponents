@@ -18,7 +18,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title=""
-        app:titleTextColor="@color/white">
+        app:titleTextColor="@android:color/white">
     </android.support.v7.widget.Toolbar>
     <FrameLayout
         android:id="@id/a_activity_appbar_content"

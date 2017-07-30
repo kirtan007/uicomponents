@@ -1,5 +1,6 @@
 package com.tinymatrix.uicomponents.demo;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
@@ -20,6 +21,7 @@ public class FragmentB extends Fragment
     {
       //  Toolbar toolbar = ((Activity)getActivity()).getToolbar();
       //  toolbar.setTitle("Fragment B");
+       Application application= App.app;
     }
 
     @Override

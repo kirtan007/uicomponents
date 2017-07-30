@@ -29,6 +29,6 @@
             app:layout_collapseMode="pin"
             app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:titleTextColor="@color/white"/>
+            app:titleTextColor="@android:color/white"/>
     </android.support.design.widget.CollapsingToolbarLayout>
 </android.support.design.widget.AppBarLayout>

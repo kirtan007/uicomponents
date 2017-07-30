@@ -12,14 +12,10 @@ import timber.log.Timber;
  */
 public class BaseApp extends MultiDexApplication
 {
-    public static Application context;
-
     @Override
     public void onCreate()
     {
         super.onCreate();
-        context = this;
-
     }
 
     @Override
@@ -29,8 +25,4 @@ public class BaseApp extends MultiDexApplication
         MultiDex.install(this);
     }
 
-    public static Context getContext()
-    {
-        return context.getApplicationContext();
-    }
 }

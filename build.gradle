@@ -20,7 +20,7 @@ allprojects {
     }
     ext{
         buildToolVersion="26.0.1" //String
-        minSDKVersion=16 //Integer
+        minSDKVersion=19 //Integer
         targetSDKVersion=26
         compileSDKVersion=26
         supportLibraryVersion = "26.0.0"
