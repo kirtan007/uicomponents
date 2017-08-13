@@ -28,6 +28,7 @@ android {
             fragmentArgsLib true
         }
     }*/
+
 }
 
 dependencies {
@@ -45,6 +46,7 @@ dependencies {
     compile "com.jakewharton.timber:timber:${timberVersion}"
     compile project(path: ':lib-slidemenu')
 }
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'lib-uicomponents'
@@ -67,5 +69,7 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 }
+
+
 apply from: '../mavenInstall.gradle'
 apply from: '../bintray.gradle'
