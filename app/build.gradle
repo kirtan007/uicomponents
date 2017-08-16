@@ -27,16 +27,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-}
 
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+}
+repositories{
+    maven { url 'https://dl.bintray.com/kirtan007/maven' }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
     compile 'com.google.code.gson:gson:2.8.1'
-
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    compile project(':library')
-    compile project(':lib-slidemenu')
+    compile project(':lib-uicomponents')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }

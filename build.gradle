@@ -25,7 +25,7 @@ allprojects {
         compileSDKVersion=26
         supportLibraryVersion = "26.0.1"
         libVersionCode= 1
-        libVersionName= "1.4.8"
+        libVersionName= "1.5.0"
         playstoreLibVersion = "9.6.1"
         timberVersion = "4.5.1"
         javaVersion = JavaVersion.VERSION_1_8
@@ -34,7 +34,7 @@ allprojects {
     }
 
 }
-tasks.getByPath(":library:javadoc").enabled = false
+tasks.getByPath(":lib-uicomponents:javadoc").enabled = false
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
