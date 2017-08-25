@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 
 android {
-    publishNonDefault true
     compileSdkVersion rootProject.ext.compileSDKVersion
     buildToolsVersion rootProject.ext.buildToolVersion
 
@@ -23,18 +22,11 @@ android {
             abortOnError false
         }
     }
-    /*apt {
-        arguments {
-            fragmentArgsLib true
-        }
-    }*/
-
 }
 
 repositories{
     maven { url 'https://dl.bintray.com/kirtan007/maven' }
 }
-
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -62,23 +54,18 @@ ext {
     publishedGroupId = 'com.tinymatrix.uicomponents'
     libraryName = 'lib-uicomponents'
     artifact = 'lib-uicomponents'
-
+    archivesName = "lib-commonres"
     libraryDescription = 'UI Component Wrapper'
-
     siteUrl = 'https://gitlab.com/kirtan007/rapiddev'
     gitUrl = 'https://gitlab.com/kirtan007/rapiddev.git'
-
     libraryVersion = rootProject.ext.libVersionName
-
     developerId = 'kirtan007'
     developerName = 'Kirtan Patel'
     developerEmail = 'kirtan007@gmail.com'
-
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 }
 
-
-apply from: '../installv.gradle'
-apply from: '../bintrayv.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

@@ -38,12 +38,18 @@ android {
 repositories{
     maven { url 'https://dl.bintray.com/kirtan007/maven' }
 }
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.google.code.gson:gson:2.8.1'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    compile project(':lib-uicomponents')
+    compile "com.android.support:support-fragment:${supportLibraryVersion}"
+    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    compile('com.tinymatrix.commonres:lib-commonres:1.0.0@aar') {
+        changing true
+    }
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    compile project(':lib-uicomponents')
 }

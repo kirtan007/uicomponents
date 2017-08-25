@@ -212,17 +212,22 @@ public abstract class Fragment extends android.support.v4.app.Fragment
     }
 
     @Override
-    public void onDestroyView()
+    public void onStop()
     {
         if (smartFragment.enableEventBus())
         {
             EventBusUtil.getInstance().getEventBus().unregister(this);
         }
         cancelRxCalls();
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView()
+    {
         getKeyboardController().hideKeyboard();
         super.onDestroyView();
     }
-
 
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim)
